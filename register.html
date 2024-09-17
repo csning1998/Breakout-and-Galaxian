@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+</head>
+<body>
+    <main>
+        <section id="register-section">
+            <h2>Register</h2>
+            <form action="index.html" method="post">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <div>
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+
+            <p>Already have an account? <a href="login.html">Login here</a>.</p>
+
+            <div>
+                <p>Or register with:</p>
+                <button onclick="googleRegister()">Register with Google</button>
+                <button onclick="facebookRegister()">Register with Facebook</button>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

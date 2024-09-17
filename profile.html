@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="這是一個純 HTML5 的個人作品集網站，展示了更多 HTML5 元素">
+    <title>純 HTML5 個人作品集</title>
+</head>
+
+<body>
+
+    <!-- 網站標頭 -->
+    <header>
+        <h1>歡迎來到我的個人作品集</h1>
+        <p>我是某甲，這是我使用純 HTML5 撰寫的網頁範例。</p>
+        <nav>
+            <ul>
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#portfolio">作品集</a></li>
+                <li><a href="#contact">聯絡我</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主要內容區 -->
+    <main>
+        <!-- 個人簡介 -->
+        <section id="about">
+            <h2>關於我</h2>
+            <article>
+                <header>
+                    <h3>自我介紹</h3>
+                </header>
+                <p>我是一名全端網頁開發者，擅長 HTML5、CSS3、JavaScript、Node.js 及 Docker。這個網頁展示了我的技術能力與過去的專案作品。</p>
+                <!-- 新增圖片 -->
+                <img src="profile.jpg" alt="某甲的個人照片" width="200">
+                <p>這是我的照片，歡迎了解更多！</p>
+            </article>
+        </section>
+
+        <!-- 作品集展示 -->
+        <section id="portfolio">
+            <h2>我的作品集</h2>
+            <article>
+                <header>
+                    <h3>專案名稱：網頁設計範例</h3>
+                </header>
+                <p>這是一個響應式網頁設計，展示了如何應用現代 HTML5 結構來實現無縫的使用者體驗。</p>
+                <!-- 新增表格 -->
+                <table>
+                    <caption>專案技術使用一覽表</caption>
+                    <thead>
+                        <tr>
+                            <th>技術</th>
+                            <th>描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HTML5</td>
+                            <td>用於建立語義化的網頁結構。</td>
+                        </tr>
+                        <tr>
+                            <td>CSS3</td>
+                            <td>用於設計視覺樣式與響應式排版。</td>
+                        </tr>
+                        <tr>
+                            <td>JavaScript</td>
+                            <td>增強使用者互動與動態內容。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article>
+                <header>
+                    <h3>專案名稱：互動式表單</h3>
+                </header>
+                <p>此專案展示了如何利用 HTML5 表單來處理使用者輸入資料。</p>
+            </article>
+        </section>
+
+        <!-- 聯絡方式 -->
+        <section id="contact">
+            <h2>聯絡我</h2>
+            <!-- 新增列表 -->
+            <ul>
+                <li>電子郵件：<a href="mailto:example@example.com">example@example.com</a></li>
+                <li>LinkedIn：<a href="https://linkedin.com">我的 LinkedIn</a></li>
+                <li>GitHub：<a href="https://github.com">我的 GitHub</a></li>
+            </ul>
+            <!-- 表單部分 -->
+            <form action="/submit" method="post">
+                <fieldset>
+                    <legend>聯絡表單</legend>
+                    <label for="name">姓名：</label>
+                    <input type="text" id="name" name="name" required><br><br>
+
+                    <label for="email">電子郵件：</label>
+                    <input type="email" id="email" name="email" required><br><br>
+
+                    <label for="message">訊息：</label>
+                    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+
+                    <input type="submit" value="提交">
+                </fieldset>
+            </form>
+        </section>
+    </main>
+
+    <!-- 網站側邊欄 -->
+    <aside>
+        <h2>近期活動</h2>
+        <p>參加了 2024 網頁技術研討會，發表了關於 HTML5 的應用與未來趨勢。</p>
+        <!-- 新增多媒體 -->
+        <video controls width="300">
+            <source src="presentation.mp4" type="video/mp4">
+            您的瀏覽器不支援影片播放。
+        </video>
+    </aside>
+
+    <!-- 網站底部 -->
+    <footer>
+        <p>&copy; 2024 某甲的作品集。保留所有權利。</p>
+        <p>隱私政策 | 使用條款 | <a href="#top">回到頂部</a></p>
+    </footer>
+
+</body>
+
+</html>
