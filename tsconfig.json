@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    /* Projects */
+    // "incremental": true,                               /* Enable incremental compilation. */
+    // "composite": true,                                 /* Enable constraints for project references. */
+    // "disableSolutionSearching": true,                  /* Opt out of multi-project reference checking. */
+
+    /* Language and Environment */
+    "target": "es6",                                   /* Specify ECMAScript target version. */
+    // "lib": [],                                         /* Specify library files to include. */
+
+    /* Modules */
+    "module": "es6",                                   /* Specify module code generation. */
+    "rootDir": "./scripts",                            /* Specify the root folder of your source files. */
+    "moduleResolution": "node",                        /* Specify module resolution strategy. */
+
+    /* Emit */
+    "outDir": "./scripts",                             /* Specify output folder for all emitted files. */
+    // "sourceMap": true,                                 /* Create sourcemap files for emitted JavaScript. */
+
+    /* Interop Constraints */
+    "allowSyntheticDefaultImports": true,              /* Allow default imports from modules without default exports. */
+    "esModuleInterop": true,                            /* Enable compatibility with CommonJS modules. */
+    "forceConsistentCasingInFileNames": true,         /* Ensure consistent casing in imports. */
+
+    /* Type Checking */
+    "strict": true,                                    /* Enable all strict type-checking options. */
+    "noImplicitAny": true,                             /* Raise error on expressions with an implied 'any' type. */
+    "noImplicitThis": true,                            /* Raise error when 'this' is of type 'any'. */
+    "alwaysStrict": true,                              /* Ensure 'use strict' is always emitted. */
+    "skipLibCheck": true                               /* Skip type checking all .d.ts files. */
+  },
+  "include": ["./scripts/**/*.ts"],                    /* Include all TypeScript files in the scripts directory. */
+  "exclude": ["node_modules"]                          /* Exclude node_modules from compilation. */
+}
