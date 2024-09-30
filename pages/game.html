@@ -17,7 +17,7 @@
         </section>
 
         <section id="player-status">
-            <h3>Player Status</h3>
+            <h3>Player Stats</h3>
             <p>Lives: <span id="lives-count">3</span></p>
             <p>Score: <span id="current-score">0</span></p>
         </section>
@@ -31,7 +31,9 @@
         </section>
     </main>
 
-    <script src="../scripts/game.js"></script>
-
+    <script type="module" src="../scripts/main/game.js"></script>
+<!--    type="module" tells the browser that the script is an ES module,
+            allowing it to use import and export statements.
+        This enables the browser to load modules correctly and handle dependencies.-->
 </body>
 </html>
