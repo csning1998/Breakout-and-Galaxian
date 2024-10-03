@@ -1,6 +1,6 @@
 # Breakout Game
 
-An implementation of the classic Breakout game using TypeScript and HTML5 Canvas.
+An implementation of the classic Breakout + Galaxian(under development) game using Vue3, TypeScript and HTML5 Canvas.
 
 ## Introduction
 
