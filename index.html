@@ -1,50 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breakout Game</title>
-    <link rel="stylesheet" href="./styles/GoogleMaterial.css">
-    <link rel="stylesheet" href="./styles/index.css">
-</head>
-<body>
-    <header>
-        <h1>Breakout Game</h1>
-        <nav>
-            <ul>
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./pages/accomplishments.html">Accomplishments</a></li>
-                <li><a href="./pages/statistics.html">Score & Statistics</a></li>
-                <li><a href="./pages/settings.html">Settings</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="game-difficulties">
-            <h1>Select Difficulty</h1>
-            <nav>
-                <ul>
-                    <li><a href="./pages/game.html?difficulty=easy">Easy</a></li>
-                    <li><a href="./pages/game.html?difficulty=easy">Normal</a></li>
-                    <li><a href="./pages/game.html?difficulty=hard">Hard</a></li>
-                    <li><a href="./pages/game.html?difficulty=asian">Asian</a></li>
-                </ul>
-            </nav>
-        </section>
-
-        <section id="logout">
-            <div>
-                <p>Logout</p>
-                <!-- <button onclick="logout()">Logout</button> -->
-                <a href="./pages/login.html">Logout</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Breakout Game. All rights reserved.</p>
-    </footer>
-
-</body>
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

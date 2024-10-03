@@ -1,0 +1,38 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": [
+    "env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "src/game/**/*.ts"  // Include the directory path for game logic
+  ],
+  "exclude": [
+    "src/**/__tests__/*",
+    "node_modules",
+    "dist"
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/game/*": ["src/game/*"]
+    },
+    "noEmit": false,
+    "emitDeclarationOnly": false,
+    "target": "ES6",                             // Retain the original target language version
+    "module": "ESNext",                          // Retain the original module system
+    "moduleResolution": "node",                  // Use Node module resolution strategy
+    "rootDir": "./src",                          // Set the root directory to the src folder
+    "outDir": "./src/dist",                      // Set the output directory to dist (aligned with Vue project structure)
+    "allowSyntheticDefaultImports": true,        // Allow default imports (compatible with Vue)
+    "esModuleInterop": true,                     // Enable compatibility with CommonJS modules
+    "forceConsistentCasingInFileNames": true,    // Enforce consistent file name casing
+    "strict": true,                              // Enable all strict type-checking options
+    "noImplicitAny": true,                       // Disallow implicit 'any' type
+    "noImplicitThis": true,                      // Disallow implicit 'this' type
+    "alwaysStrict": true,                        // Always use strict mode
+    "skipLibCheck": true                         // Skip type checking of declaration files (.d.ts) for faster compilation
+  }
+}

@@ -1,153 +1,61 @@
-# Breakout Game
+# test-vue
 
-An implementation of the classic Breakout game using TypeScript and HTML5 Canvas.
+This template should help get you started developing with Vue 3 in Vite.
 
-## Introduction
+## Recommended IDE Setup
 
----
-- This project is a web-based version of the classic Breakout game, developed using TypeScript and HTML5 Canvas. The game features multiple difficulty levels, responsive controls, and a modular codebase designed for scalability and maintainability.
-- This game is based on and extends the development from the MDN 2D Breakout game tutorial. The original program was written in JavaScript, and the original source can be found here:
-  - [MDN 2D Breakout Game Tutorial](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript)
-- In this project, all code is written in TypeScript, modularized, and further extended as a personal Web App project.
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Features
+## Type Support for `.vue` Imports in TS
 
----
-- **Multiple Difficulty Levels**: Choose between **Easy**, **Medium**, **Hard**, and **Asian** difficulty levels.
-- **Modular Codebase**: Organized into functional modules for better maintainability.
-- **Responsive Controls**: Smooth paddle movement using keyboard input.
-- **Score and Lives Tracking**: Keeps track of the player's score and remaining lives.
-- **Collision Detection**: Accurate collision detection between the ball, paddle, and bricks.
-- **Canvas Rendering**: Utilizes HTML5 Canvas for rendering game graphics.
-- **Responsive Design**: Adaptable to different screen sizes.
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-## Project Structure
+## Customize configuration
 
----
-- **dist/**: Contains compiled JavaScript files.
-- **scripts/**: Contains TypeScript source files.
-    - **components/**: Game components like Ball, Paddle, Bricks, and Player.
-    - **core/**: Core functionality such as canvas initialization, game logic, and input handling.
-    - **main/**: Entry point of the game.
-    - **shared/**: Shared utilities and settings.
-- **pages/**: HTML pages for different sections of the application.
-- **styles/**: CSS stylesheets.
-- **node_modules/**: Project dependencies.
-- **package.json & package-lock.json**: NPM configuration files.
-- **tsconfig.json**: TypeScript compiler configuration.
-- **index.html**: Main page with difficulty selection.
-- **README.md**: Project documentation.
+See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Installation
+## Project Setup
 
----
-### Prerequisites
+```sh
+npm install
+```
 
-- **Node.js** (Version 12 or higher)
-- **NPM** (Node Package Manager)
+### Compile and Hot-Reload for Development
 
-### Steps
+```sh
+npm run dev
+```
 
-1. **Clone the Repository**
+### Type-Check, Compile and Minify for Production
 
-   ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
-   ```
+```sh
+npm run build
+```
 
-2. **Install Dependencies**
+### Run Unit Tests with [Vitest](https://vitest.dev/)
 
-   ```bash
-   npm install
-   ```
+```sh
+npm run test:unit
+```
 
-3. **Compile TypeScript Files**
+### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
 
-   ```bash
-   npx tsc
-   ```
+```sh
+npm run test:e2e:dev
+```
 
-   This will compile the TypeScript files into JavaScript and place them in the `dist/` directory.
+This runs the end-to-end tests against the Vite development server.
+It is much faster than the production build.
 
-4. **Run a Local Development Server**
+But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
 
-   You can use `live-server` or any other static server.
+```sh
+npm run build
+npm run test:e2e
+```
 
-   ```bash
-   npm install -g live-server
-   live-server
-   ```
+### Lint with [ESLint](https://eslint.org/)
 
-   This will start a server at `http://127.0.0.1:8080`.
-
-## Usage
-
----
-1. **Open the Game**
-
-   Navigate to `http://127.0.0.1:8080/index.html` in your web browser.
-
-2. **Select Difficulty**
-
-   Choose a difficulty level from the home page:
-
-    - **Easy**
-    - **Hard**
-    - **Asian**
-
-3. **Play the Game**
-
-   Use the left and right arrow keys to move the paddle and prevent the ball from falling off the screen. Break all the bricks to win the game.
-
-## Gaming 
-
----
-### Controls
-
-- **Move Paddle Left**: Left Arrow Key
-- **Move Paddle Right**: Right Arrow Key
-
-### Game Settings
-
-- **Difficulty Levels**: New features would be added in the future.
-
-    - **Easy**: Slower ball speed, more lives.
-    - **Hard**: Faster ball speed, fewer lives.
-    - **Asian**: Very fast ball speed, challenging gameplay.
-
-- **Lives**: Starts with 3 lives. Game over when lives reach 0.
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. **Fork the Repository**
-2. **Create a New Branch**
-
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-3. **Commit Your Changes**
-
-   ```bash
-   git commit -am 'Add new feature'
-   ```
-
-4. **Push to the Branch**
-
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-5. **Open a Pull Request**
-
-
-## Acknowledgements
-
-- MDN 2D Breakout Game Tutorial: This game is based on and extends the development from the MDN 2D Breakout game tutorial. The original program was written in JavaScript, and the original source can be found here:
-    - [MDN 2D Breakout Game Tutorial](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript)
-- **TypeScript**: For providing a robust type system for JavaScript.
-- **HTML5 Canvas**: For enabling rich graphics in web applications.
-
----
+```sh
+npm run lint
+```
