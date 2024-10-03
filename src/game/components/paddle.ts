@@ -17,7 +17,6 @@ export class Paddle {
 
   public draw(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): void {
     ctx.beginPath()
-    console.log(`Drawing paddle at x: ${this.x}, y: ${canvas.height - this.height}`)
     ctx.rect(this.x, canvas.height - this.height, this.width, this.height)
     ctx.fillStyle = '#0095DD'
     ctx.fill()

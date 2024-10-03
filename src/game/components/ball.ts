@@ -29,7 +29,6 @@ export class Ball {
 
   public draw(ctx: CanvasRenderingContext2D): void {
     ctx.beginPath()
-    console.log(`Drawing ball at x: ${this.x}, y: ${this.y}`)
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
     ctx.fillStyle = '#0095DD'
     ctx.fill()

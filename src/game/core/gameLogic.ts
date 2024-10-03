@@ -9,7 +9,8 @@ import { Player } from '@/game/components/player.js'
 import { InputHandler } from './input.js'
 import { GameSettings } from '@/game/shared/settings.js'
 
-export function gameLoop(
+import { useGameStore } from '@/stores/game'
+export function gameLogic(
   ctx: CanvasRenderingContext2D,
   canvas: HTMLCanvasElement,
   settings: GameSettings,
@@ -20,10 +21,14 @@ export function gameLoop(
   inputHandler: InputHandler
 ) {
   console.log('=== GameLoop Started ===')
+  const game = useGameStore()
 
+  // setInterval(() => {
+  //   console.log('game.requestAnimationFrameValue', game.requestAnimationFrameValue)
+  // }, 1000)
   function loop(): void {
     try {
-      console.log('=== Drawing frame ===')
+      // console.log('=== Start looping ===')
       // Clear the canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -38,8 +43,8 @@ export function gameLoop(
       inputHandler.update(paddle, canvas)
       updateBallPosition(ball, canvas, paddle, player, bricks, settings)
 
+      game.requestAnimationFrameValue = requestAnimationFrame(loop)
       // Request the next animation frame
-      requestAnimationFrame(loop)
     } catch (err) {
       console.error('=== Error in game loop ===\n', err)
     }

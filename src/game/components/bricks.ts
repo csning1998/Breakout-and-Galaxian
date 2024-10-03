@@ -46,7 +46,6 @@ export class Bricks {
             b.y = brickY
 
             ctx.beginPath()
-            console.log('Drawing Brick', b)
             ctx.rect(brickX, brickY, this.brickWidth, this.brickHeight)
             ctx.fillStyle = '#0095DD'
             ctx.fill()

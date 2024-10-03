@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { defineProps } from 'vue'
+import { useTemplateRef, onMounted, onUnmounted } from 'vue'
+//import { defineProps } from 'vue'
 import { initializeCanvas } from '@/game/core/canvas'
 import { GameSettings } from '@/game/shared/settings'
 import { Player } from '@/game/components/player'
@@ -8,8 +8,8 @@ import { Ball } from '@/game/components/ball'
 import { Paddle } from '@/game/components/paddle'
 import { Bricks } from '@/game/components/bricks'
 import { InputHandler } from '@/game/core/input'
-import { gameLoop } from '@/game/core/gameLogic'
-
+import { gameLogic } from '@/game/core/gameLogic'
+import { useGameStore } from '@/stores/game'
 const props = defineProps({
   difficulty: {
     type: String as PropType<string>,
@@ -18,9 +18,14 @@ const props = defineProps({
 })
 console.log('Received Difficulty:', props.difficulty)
 
-const gameCanvas = ref<HTMLCanvasElement | null>(null)
-const score = ref<number>(0)
-const lives = ref<number>(3)
+// const gameCanvas = ref<HTMLCanvasElement | null>(null)
+// const gameCanvas: HTMLCanvasElement = null
+
+const gameCanvas: HTMLCanvasElement = useTemplateRef('gameCanvas')
+const score: number = 0
+const lives: number = 3
+
+const game = useGameStore()
 
 onMounted(() => {
   if (!gameCanvas.value) {
@@ -55,10 +60,14 @@ onMounted(() => {
 
   // Start the game loop
   try {
-    gameLoop(ctx, gameCanvas.value, settings, player, ball, paddle, bricks, inputHandler)
+    gameLogic(ctx, gameCanvas.value, settings, player, ball, paddle, bricks, inputHandler)
   } catch (error) {
     console.error('=== Game-loop Failed ===\n', error)
   }
+
+  onUnmounted(() => {
+    cancelAnimationFrame(game.requestAnimationFrameValue)
+  })
 })
 </script>
 
