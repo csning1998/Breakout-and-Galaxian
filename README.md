@@ -51,8 +51,8 @@ An implementation of the classic Breakout game using TypeScript and HTML5 Canvas
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/yourusername/Breakout-and-Galaxian.git
+   cd Breakout-and-Galaxian
    ```
 
 2. **Project Setup**
