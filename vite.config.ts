@@ -6,6 +6,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/Breakout-and-Galaxian' : '/',
   plugins: [vue(), vueJsx()],
   resolve: {
     alias: {
@@ -18,3 +19,5 @@ export default defineConfig({
     emptyOutDir: true
   }
 })
+
+// Ref: https://csning1998.github.io/Breakout-and-Galaxian/

@@ -1,7 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
-    "env.d.ts",
+    "src/vite-env.d.ts",
     "src/**/*.ts",
     "src/**/*.vue",
     "src/game/**/*.ts"  // Include the directory path for game logic
@@ -17,7 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/game/*": ["src/game/*"]
+      "@/game/*": ["./src/game/*"]
     },
     "noEmit": false,
     "emitDeclarationOnly": false,
@@ -25,7 +25,7 @@
     "module": "ESNext",                          // Retain the original module system
     "moduleResolution": "node",                  // Use Node module resolution strategy
     "rootDir": "./src",                          // Set the root directory to the src folder
-    "outDir": "./src/dist",                      // Set the output directory to dist (aligned with Vue project structure)
+    "outDir": "./dist",                      // Set the output directory to dist (aligned with Vue project structure)
     "allowSyntheticDefaultImports": true,        // Allow default imports (compatible with Vue)
     "esModuleInterop": true,                     // Enable compatibility with CommonJS modules
     "forceConsistentCasingInFileNames": true,    // Enforce consistent file name casing
