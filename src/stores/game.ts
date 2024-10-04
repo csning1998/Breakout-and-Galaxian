@@ -1,12 +1,31 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useGameStore = defineStore('game', () => {
-  const requestAnimationFrameValue = ref(0)
-  // const doubleCount = computed(() => count.value * 2)
-  // function increment() {
-  //   count.value++
-  // }
+const defaultPlayerState = {
+  score: 0,
+  lives: 3
+}
 
-  return { requestAnimationFrameValue }
+export const useGameStore = defineStore('game', () => {
+  let requestAnimationFrameValue = ref(0)
+  let player = ref({
+    ...defaultPlayerState
+  })
+
+  const resetPlayer = function () {
+    player.value = {
+      ...defaultPlayerState
+    }
+  }
+
+  function pause() {
+    cancelAnimationFrame(requestAnimationFrameValue.value)
+  }
+
+  return {
+    requestAnimationFrameValue,
+    player,
+    resetPlayer,
+    pause
+  }
 })

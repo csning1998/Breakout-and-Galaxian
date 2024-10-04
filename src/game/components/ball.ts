@@ -22,9 +22,10 @@ export class Ball {
     this.x = canvas.width / 2
     this.y = canvas.height - 30
 
-    const angle = (Math.random() * Math.PI) / 2 + Math.PI / 4
-    this.dx = this.speed * Math.cos(angle)
-    this.dy = this.speed * Math.sin(angle)
+    const angleX = (Math.random() * Math.PI) / 2 + Math.PI / 4
+    const angleY = (Math.random() * Math.PI) / 2 + Math.PI / 4
+    this.dx = this.speed * Math.cos(angleX)
+    this.dy = -Math.abs(this.speed * Math.sin(angleY))
   }
 
   public draw(ctx: CanvasRenderingContext2D): void {

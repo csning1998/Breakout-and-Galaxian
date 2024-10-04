@@ -3,13 +3,15 @@ import { useTemplateRef, onMounted, onUnmounted } from 'vue'
 //import { defineProps } from 'vue'
 import { initializeCanvas } from '@/game/core/canvas'
 import { GameSettings } from '@/game/shared/settings'
-import { Player } from '@/game/components/player'
 import { Ball } from '@/game/components/ball'
 import { Paddle } from '@/game/components/paddle'
 import { Bricks } from '@/game/components/bricks'
 import { InputHandler } from '@/game/core/input'
-import { gameLogic } from '@/game/core/gameLogic'
+import { GameLogic } from '@/game/core/game-logic'
 import { useGameStore } from '@/stores/game'
+import { useRouter } from 'vue-router'
+// import { storeToRefs } from 'pinia'
+
 const props = defineProps({
   difficulty: {
     type: String as PropType<string>,
@@ -18,14 +20,9 @@ const props = defineProps({
 })
 console.log('Received Difficulty:', props.difficulty)
 
-// const gameCanvas = ref<HTMLCanvasElement | null>(null)
-// const gameCanvas: HTMLCanvasElement = null
-
 const gameCanvas: HTMLCanvasElement = useTemplateRef('gameCanvas')
-const score: number = 0
-const lives: number = 3
-
 const game = useGameStore()
+const router = useRouter()
 
 onMounted(() => {
   if (!gameCanvas.value) {
@@ -42,8 +39,6 @@ onMounted(() => {
   const settings = new GameSettings(props.difficulty)
 
   // Initialize game Components
-  const player = new Player()
-  console.log('Initialized Player: ', player)
 
   const ball = new Ball(gameCanvas.value, settings)
   console.log('Initialized Ball: ', ball)
@@ -58,24 +53,41 @@ onMounted(() => {
   const inputHandler = new InputHandler(paddle, gameCanvas.value)
   console.log('Initialized InputHandler: ', inputHandler)
 
+  var scene = {
+    game,
+    ctx,
+    canvas: gameCanvas.value,
+    settings,
+    ball,
+    paddle,
+    bricks,
+    inputHandler
+  }
+
   // Start the game loop
   try {
-    gameLogic(ctx, gameCanvas.value, settings, player, ball, paddle, bricks, inputHandler)
+    const gameLogic = new GameLogic(scene)
+
+    gameLogic.onGameWon = function() {
+      router.push({'name': 'Home'})
+    }
+
+
   } catch (error) {
     console.error('=== Game-loop Failed ===\n', error)
   }
 
   onUnmounted(() => {
-    cancelAnimationFrame(game.requestAnimationFrameValue)
+    game.pause()
   })
 })
 </script>
 
 <template>
   <div class="game-container">
+    <p>Score: {{ game.player.score }}</p>
+    <p>Lives: {{ game.player.lives }}</p>
     <canvas ref="gameCanvas" width="800" height="600"></canvas>
-    <p>Score: {{ score }}</p>
-    <p>Lives: {{ lives }}</p>
   </div>
 </template>
 

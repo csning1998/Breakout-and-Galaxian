@@ -12,10 +12,10 @@ export class GameSettings {
   public brickOffsetTop: number
   public brickOffsetLeft: number
 
-  public ballSpeed: number
+  public ballSpeed: number = 1
 
-  public paddleHeight: number
-  public paddleWidth: number
+  public paddleHeight: number = 10
+  public paddleWidth: number = 1000
 
   public difficulty: string
 
@@ -48,7 +48,7 @@ export class GameSettings {
     this.brickPadding = 20
     this.brickOffsetTop = 30
     this.brickOffsetLeft = 30
-    this.paddleHeight = 10
-    this.paddleWidth = 5000
+    // this.paddleHeight = 10
+    // this.paddleWidth = 100
   }
 }

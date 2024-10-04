@@ -10,7 +10,7 @@ const difficulty = ref<string>((route.query.difficulty as string) || 'normal')
 console.log('GameView loaded with difficulty:', difficulty.value)
 
 function return2Home() {
-  router.push('Home')
+  router.push({name: 'Home'})
 }
 </script>
 
