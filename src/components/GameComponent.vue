@@ -106,17 +106,25 @@ function restartGame() {
     gameLogic.resume();
   }
 }
-</script>
+function return2Home() {
+  gameLogic.resetGame();
+  router.push({name: 'Home'})
+}
 
+</script>
 
 <template>
   <section class="game-container">
-    <p>Score: {{ game.player.score }}</p>
-    <p>Lives: {{ game.player.lives }}</p>
+    <div class="game-info">
+      <p>Difficulty: {{ difficulty }}</p>
+      <p>Score: {{ game.player.score }}</p>
+      <p>Lives: {{ game.player.lives }}</p>
+    </div>
     <canvas ref="gameCanvas" width="800" height="600"></canvas>
     <div class="controls">
       <button @click="togglePauseGame">{{ isGamePaused ? 'Resume' : 'Pause' }}</button>
       <button @click="restartGame">Restart</button>
+      <button @click="return2Home" class="back-to-home-button">Return to Home</button>
     </div>
   </section>
 </template>
@@ -127,10 +135,65 @@ function restartGame() {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  background-color: var(--color-bg-light);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.game-info {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.game-info p {
+  margin: 0;
+  font-weight: bold;
+  color: var(--color-text);
 }
 
 canvas {
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-primary);
+  margin-top: 20px;
+  background-color: #000;
+}
+
+.controls {
   margin-top: 20px;
 }
+
+.controls button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: var(--color-bg-light);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background-color: var(--color-accent);
+}
+
+
+.back-to-home-button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.back-to-home-button:hover {
+  background-color: var(--color-accent);
+}
 </style>
+

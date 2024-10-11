@@ -9,20 +9,13 @@ const router = useRouter()
 const difficulty = ref<string>((route.query.difficulty as string) || 'normal')
 console.log('GameView loaded with difficulty:', difficulty.value)
 
-function return2Home() {
-  router.push({name: 'Home'})
-}
 </script>
 
 <template>
   <div class="game-view-container">
-    <h1>Breakout and Galaxian Game</h1>
-    <p>
-      Selected Difficulty: <strong>{{ difficulty }}</strong>
-    </p>
+<!--    <h2>Breakout and Galaxian Game</h2>-->
     <!--    Send the selected difficulty to GameComponent to initialize the game.-->
     <GameComponent :difficulty="difficulty" />
-    <button @click="return2Home()" class="back-to-home-button">Return to Home</button>
   </div>
 </template>
 
@@ -32,12 +25,11 @@ function return2Home() {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin: 2rem auto;
 }
 
-.back-to-home-button {
-  margin-top: 20px;
-  padding: 15px 30px;
-  font-size: 18px;
-  cursor: pointer;
+h2 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
 }
 </style>
