@@ -3,12 +3,20 @@
  */
 
 import { Paddle } from '@/game/components/paddle.js'
+import {GameLogic} from "@/game/core/game-logic";
 
 export class InputHandler {
   private rightPressed: boolean = false
   private leftPressed: boolean = false
+  private gameLogic: GameLogic;
 
-  constructor(paddle: Paddle, canvas: HTMLCanvasElement) {
+  constructor(
+      paddle: Paddle,
+      canvas: HTMLCanvasElement,
+      gameLogic: GameLogic
+  ) {
+    this.gameLogic = gameLogic;
+
     document.addEventListener('keydown', (e) => this.keyDownHandler(e), false)
     document.addEventListener('keyup', (e) => this.keyUpHandler(e), false)
     document.addEventListener('mousemove', (e) => this.mouseMoveHandler(e, paddle, canvas), false)
@@ -16,11 +24,14 @@ export class InputHandler {
 
   private keyDownHandler(e: KeyboardEvent): void {
     if (e.key === 'Right' || e.key === 'ArrowRight') {
-      this.rightPressed = true
+      this.rightPressed = true;
     } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
-      this.leftPressed = true
+      this.leftPressed = true;
+    } else if (e.key === 'p' || e.key === 'P') {
+      this.gameLogic.togglePause();
     }
   }
+
   private keyUpHandler(e: KeyboardEvent): void {
     if (e.key === 'Right' || e.key === 'ArrowRight') {
       this.rightPressed = false
@@ -34,6 +45,12 @@ export class InputHandler {
     if (relativeX > 0 && relativeX < canvas.width) {
       paddle.x = relativeX - paddle.width / 2
     }
+  }
+
+  public destroy(): void {
+    document.removeEventListener('keydown', this.keyDownHandler);
+    document.removeEventListener('keyup', this.keyUpHandler);
+    document.removeEventListener('mousemove', this.mouseMoveHandler);
   }
 
   public update(paddle: Paddle, canvas: HTMLCanvasElement): void {

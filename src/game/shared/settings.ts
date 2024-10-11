@@ -25,13 +25,13 @@ export class GameSettings {
 
     switch (difficulty) {
       case 'Easy':
-        this.ballSpeed = 3
+        this.ballSpeed = 2
         break
-      case 'Normal':
-        this.ballSpeed = 6
+      case 'Medium':
+        this.ballSpeed = 4
         break
       case 'Hard':
-        this.ballSpeed = 9
+        this.ballSpeed = 8
         break
       case 'Asian':
         this.ballSpeed = 12

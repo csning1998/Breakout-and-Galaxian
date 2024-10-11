@@ -5,7 +5,42 @@
 
 export class GameLogic {
   private scene: Scene;
-  public onGameWon = function(){}
+  public isPaused: boolean = false;
+  public onGameWon = function (): void {
+  }
+
+  public pause(): void {
+    console.log("The game is paused.")
+    this.isPaused = true;
+  }
+
+  public resume(): void {
+    console.log("The game is resumed.")
+    if (!this.isPaused) return;
+    this.isPaused = false;
+  }
+
+  public togglePause(): void {
+    console.log("The game is paused.")
+    this.isPaused = !this.isPaused;
+  }
+
+  public resetGame() {
+    // Reset game state
+    const {game, ball, paddle, bricks, canvas} = this.scene;
+
+    game.resetPlayer(); // Reset player score and lives
+
+    // Reset ball and paddle positions
+    ball.resetPosition(canvas);
+    paddle.x = (canvas.width - paddle.width) / 2;
+
+    // Reset bricks
+    bricks.resetBricks();
+
+    // Reset any other necessary game state
+  }
+
   constructor(scene: Scene) {
     console.log("scene", scene);
 
@@ -18,9 +53,16 @@ export class GameLogic {
     // setInterval(() => {
     //   console.log('game.requestAnimationFrameValue', game.requestAnimationFrameValue)
     // }, 1000)
+
+    if (this.isPaused) {
+      this.scene.game.requestAnimationFrameValue = requestAnimationFrame(
+          this.loop.bind(this)
+      );
+      return;
+    }
     try {
-      const { ctx, canvas, bricks, ball, paddle, inputHandler, game } =
-        this.scene;
+      const {ctx, canvas, bricks, ball, paddle, inputHandler, game} =
+          this.scene;
 
       // Clear the canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -34,7 +76,7 @@ export class GameLogic {
       this.updateBallPosition();
 
       game.requestAnimationFrameValue = requestAnimationFrame(
-        this.loop.bind(this)
+          this.loop.bind(this)
       );
 
       // Request the next animation frame
@@ -46,11 +88,11 @@ export class GameLogic {
   private updateBallPosition() {
     // Bounce off the left and right edges
 
-    const { ball, paddle, canvas, game } = this.scene;
+    const {ball, paddle, canvas, game} = this.scene;
 
     if (
-      ball.x + ball.dx > canvas.width - ball.radius ||
-      ball.x + ball.dx < ball.radius
+        ball.x + ball.dx > canvas.width - ball.radius ||
+        ball.x + ball.dx < ball.radius
     ) {
       ball.dx = -ball.dx;
     }
@@ -59,7 +101,23 @@ export class GameLogic {
       ball.dy = -ball.dy; // Bounce off the top edge
     } else if (ball.y + ball.dy > canvas.height - ball.radius) {
       if (ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
-        ball.dy = -ball.dy; // Bounce off the paddle
+        // Calculate collision point relative to the paddle's center
+        const paddleCenter: number = paddle.x + paddle.width / 2;
+        const collisionPoint: number = ball.x - paddleCenter;
+
+        // Normalize collision point to range [-1, 1]
+        const normalizedCollisionPoint: number = collisionPoint / (paddle.width / 2);
+
+        // Calculate bounce angle (maximum 60 degrees in radians)
+        const maxBounceAngle: number = (60 * Math.PI) / 180;
+        const bounceAngle: number = normalizedCollisionPoint * maxBounceAngle;
+
+        // Calculate the speed of the ball
+        const speed: number = Math.sqrt(ball.dx * ball.dx + ball.dy * ball.dy);
+
+        // Update velocity components based on bounce angle
+        ball.dx = speed * Math.sin(bounceAngle);
+        ball.dy = -speed * Math.cos(bounceAngle);
       } else {
         game.player.lives--; // Lose a life
         if (game.player.lives <= 0) {
@@ -95,11 +153,11 @@ export class GameLogic {
       for (let r = 0; r < bricks.brickRowCount; r++) {
         const b = bricks.bricks[c][r];
         if (
-          b.status === 1 &&
-          ball.x > b.x &&
-          ball.x < b.x + settings.brickWidth &&
-          ball.y > b.y &&
-          ball.y < b.y + settings.brickHeight
+            b.status === 1 &&
+            ball.x > b.x &&
+            ball.x < b.x + settings.brickWidth &&
+            ball.y > b.y &&
+            ball.y < b.y + settings.brickHeight
         ) {
           ball.dy = -ball.dy;
           b.status = 0; // Remove the brick
@@ -107,26 +165,15 @@ export class GameLogic {
           game.player.score++;
           // player.updatePlayerStatus() // Update score display
           if (
-            game.player.score ===
-            bricks.brickColumnCount * bricks.brickRowCount
+              game.player.score ===
+              bricks.brickColumnCount * bricks.brickRowCount
           ) {
             alert("YOU WIN, CONGRATULATIONS!");
-            this.onGameWon()
+            this.resetGame()
+            // this.onGameWon()
           }
         }
       }
     }
-  }
-
-  resetGame() {
-    const { game, ball, paddle, bricks, canvas } = this.scene;
-
-    game.resetPlayer();
-    // Reset ball and paddle positions
-    ball.resetPosition(canvas);
-    paddle.x = (canvas.width - paddle.width) / 2;
-
-    // Reset bricks
-    bricks.resetBricks();
   }
 }
