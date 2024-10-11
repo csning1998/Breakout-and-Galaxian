@@ -37,8 +37,6 @@ export class GameLogic {
 
     // Reset bricks
     bricks.resetBricks();
-
-    // Reset any other necessary game state
   }
 
   constructor(scene: Scene) {
