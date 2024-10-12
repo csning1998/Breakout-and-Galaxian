@@ -1,7 +1,7 @@
 /*
  * Manages the paddle's properties and functions, including movement and rendering.
  */
-
+import * as dat from 'dat.gui';
 import { GameSettings } from '@/tsscripts/game/shared/settings'
 
 export class Paddle {
@@ -13,6 +13,15 @@ export class Paddle {
     this.height = settings.paddleHeight
     this.width = settings.paddleWidth
     this.x = (canvas.width - this.width) / 2
+
+    const gui = new dat.GUI();
+
+    var obj = {
+      paddleWidth: 100
+    }
+    gui.add(obj, 'paddleWidth').step(5).onChange(() =>{
+      this.width = obj.paddleWidth
+    });
   }
 
   public draw(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): void {
