@@ -13,7 +13,7 @@ export class InputHandler {
   constructor(
     paddle: Paddle,
     canvas: HTMLCanvasElement,
-    gameLogic: () => void,
+    gameLogic: GameLogic,
   ) {
     this.gameLogic = gameLogic;
 
