@@ -5,12 +5,14 @@ defineProps<{
 </script>
 
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <pre>
-      This game is developed as my assignment for web development course.
-      Further development of this game would possibly continue after finishing the course.
-    </pre>
+  <div class="web-intro-content">
+    <h1>{{ msg }}</h1>
+    <p>
+      This project, which includes a personal introduction and game elements, was developed as part of the Web Fundamentals course.
+    </p>
+    <p>
+      This project will be continuing updated during my free time, adding more elements based on the skills I acquire.
+    </p>
   </div>
 </template>
 
@@ -22,8 +24,20 @@ h1 {
   top: -10px;
 }
 
+.web-intro-content {
+  width: 100%;
+}
+
+
 h3 {
   font-size: 1.2rem;
+}
+
+p {
+  white-space: pre-wrap; /* Allow the text to wrap */
+  word-wrap: break-word; /* Break long words */
+  overflow: auto; /* Add scroll if content overflows */
+  max-width: 100%; /* Ensure it doesn't exceed parent width */
 }
 
 .greetings h1,
