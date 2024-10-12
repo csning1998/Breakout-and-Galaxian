@@ -7,7 +7,7 @@ import WebIntro from './components/WebIntro.vue'
   <header>
     <div class="header-content">
       <img alt="Vue logo" class="logo" src="@/assets/logo.svg" />
-      <WebIntro msg="Welcome to the Breakout and Galaxian Game" />
+      <WebIntro msg="Welcome to my Curriculum Vitae" class="web-intro" />
     </div>
     <nav>
       <RouterLink to="/">Home</RouterLink>
@@ -31,14 +31,17 @@ header {
 
 .header-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Keep column direction on all screen sizes */
   align-items: center;
+  text-align: center; /* Center text inside WebIntro */
+  max-width: 100%;
 }
 
 .logo {
   width: 80px;
   height: 80px;
   margin-bottom: 1rem;
+  flex-shrink: 0; /* Prevent the logo from shrinking */
 }
 
 nav {
@@ -60,12 +63,17 @@ nav a:hover {
 
 @media (min-width: 1024px) {
   .header-content {
-    flex-direction: row;
+    align-items: center; /* Vertically center items */
+    justify-content: center; /* Horizontally center items */
   }
 
   .logo {
     margin-right: 1rem;
     margin-bottom: 0;
+  }
+
+  .web-intro {
+    text-align: center;
   }
 }
 </style>
