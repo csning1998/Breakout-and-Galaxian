@@ -18,7 +18,7 @@
     "types": ["vite/client"],
     "paths": {
       "@/*": ["./src/*"],
-      "@/game/*": ["./src/game/*"]
+      "@/game/*": ["./src/tsscripts/game/*"]
     },
     "noEmit": false,
     "emitDeclarationOnly": false,
