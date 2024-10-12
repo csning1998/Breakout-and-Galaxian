@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import GameComponent from '@/components/GameComponent.vue'
+import GameComponent from '@/components/game/GameComponent.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -13,8 +13,6 @@ console.log('GameView loaded with difficulty:', difficulty.value)
 
 <template>
   <div class="game-view-container">
-<!--    <h2>Breakout and Galaxian Game</h2>-->
-    <!--    Send the selected difficulty to GameComponent to initialize the game.-->
     <GameComponent :difficulty="difficulty" />
   </div>
 </template>

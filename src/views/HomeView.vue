@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { onMounted, ref } from 'vue'
-import DifficultySelector from '@/components/DifficultySelector.vue'
+import DifficultySelector from '@/components/game/DifficultySelector.vue'
 
 const router = useRouter()
 const showDifficultySelector = ref(false)
@@ -46,7 +46,7 @@ onMounted(() => {
   background-color: var(--color-bg-light);
   padding: 2rem;
   border-radius: 8px;
-  margin: 2rem auto; /* 居中容器 */
+  margin: 2rem auto;
   max-width: 600px;
 }
 

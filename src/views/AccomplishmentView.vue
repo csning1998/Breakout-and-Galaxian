@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import AccomplishmentList from '@/components/AccomplishmentList.vue'
+import AccomplishmentList from '@/components/game/AccomplishmentList.vue'
 
 export default defineComponent({
   name: 'UserAccomplishments',
