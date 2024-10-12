@@ -122,9 +122,9 @@ function return2Home() {
     </div>
     <canvas ref="gameCanvas" width="800" height="600"></canvas>
     <div class="controls">
-      <button @click="togglePauseGame">{{ isGamePaused ? 'Resume' : 'Pause' }}</button>
-      <button @click="restartGame">Restart</button>
-      <button @click="return2Home" class="back-to-home-button">Return to Home</button>
+      <button @click="togglePauseGame" class="functionality-button">{{ isGamePaused ? 'Resume' : 'Pause' }}</button>
+      <button @click="restartGame" class="functionality-button">Restart</button>
+      <button @click="return2Home" class="functionality-button">Return to Home</button>
     </div>
   </section>
 </template>
