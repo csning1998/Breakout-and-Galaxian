@@ -2,9 +2,12 @@
  * Contains the main game loop and logic, including collision detection and game updates.
  */
 
+import { InputHandler } from '@/tsscripts/game/core/input';
+
 
 export class GameLogic {
     private scene: Scene;
+    private inputHandler: InputHandler;
     public isPaused: boolean = false;
     public onGameWon = function (): void {
     }
@@ -42,7 +45,11 @@ export class GameLogic {
     constructor(scene: Scene) {
         console.log("scene", scene);
 
+
         this.scene = scene;
+
+        const {game, ball, paddle, bricks, canvas} = this.scene;
+        this.inputHandler = new InputHandler(paddle, canvas, this);
         this.loop();
     }
 
@@ -59,8 +66,10 @@ export class GameLogic {
             return;
         }
         try {
-            const {ctx, canvas, bricks, ball, paddle, inputHandler, game} =
+            const {ctx, canvas, bricks, ball, paddle, game} =
                 this.scene;
+
+
 
             // Clear the canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -70,7 +79,7 @@ export class GameLogic {
             ball.draw(ctx);
             paddle.draw(ctx, canvas);
 
-            inputHandler.update(paddle, canvas);
+            this.inputHandler.update(paddle, canvas);
             this.updateBallPosition();
 
             game.requestAnimationFrameValue = requestAnimationFrame(

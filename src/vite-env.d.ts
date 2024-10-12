@@ -15,7 +15,7 @@ declare global {
     paddle: Paddle;
     bricks: Bricks;
     settings: GameSettings;
-    inputHandler: InputHandler;
+    // inputHandler: InputHandler;
   }
 }
 

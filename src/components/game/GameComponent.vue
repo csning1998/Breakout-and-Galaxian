@@ -5,17 +5,15 @@ import { GameSettings } from '@/tsscripts/game/shared/settings';
 import { Ball } from '@/tsscripts/game/components/ball';
 import { Paddle } from '@/tsscripts/game/components/paddle';
 import { Bricks } from '@/tsscripts/game/components/bricks';
-import { InputHandler } from '@/tsscripts/game/core/input';
 import { GameLogic } from '@/tsscripts/game/core/game-logic';
 import { useGameStore } from '@/tsscripts/stores/game';
 import { useRouter } from 'vue-router';
 
-const props = defineProps({
-  difficulty: {
-    type: String as PropType<string>,
-    required: true,
-  },
-});
+interface Props {
+  difficulty: string;
+}
+
+const props = defineProps<Props>();
 console.log('Received Difficulty:', props.difficulty);
 
 const gameCanvas = ref<HTMLCanvasElement | null>(null);
@@ -50,21 +48,23 @@ onMounted(() => {
   console.log('Initialized Bricks:', bricks);
 
   // Initialize input handler
-  const inputHandler = new InputHandler(paddle, gameCanvas.value, () => {
-    gameLogic.togglePause();
-  });
-  console.log('Initialized InputHandler:', inputHandler);
+  // const inputHandler = new InputHandler(paddle, gameCanvas.value, () => {
+  //   gameLogic.togglePause();
+  // });
+
+
+  // console.log('Initialized InputHandler:', inputHandler);
 
   // Create scene object with inputHandler included
-  var scene = {
+  let scene = {
     game,
     ctx,
-    canvas: gameCanvas.value,
+    canvas: gameCanvas.value!,
     settings,
     ball,
     paddle,
     bricks,
-    inputHandler, // Include inputHandler here
+    // inputHandler, // Include inputHandler here
   };
 
   // Start the game loop
@@ -80,9 +80,9 @@ onMounted(() => {
 
   onUnmounted(() => {
     game.pause();
-    if (inputHandler) {
-      inputHandler.destroy();
-    }
+    // if (inputHandler) {
+    //   inputHandler.destroy();
+    // }
     if (gameLogic) {
       gameLogic.pause();
     }

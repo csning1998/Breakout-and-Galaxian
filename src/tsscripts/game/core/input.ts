@@ -27,6 +27,8 @@ export class InputHandler {
   }
 
   private keyDownHandler(e: KeyboardEvent): void {
+
+    console.log("keyDown", e.key)
     if (e.key === "Right" || e.key === "ArrowRight") {
       this.rightPressed = true;
     } else if (e.key === "Left" || e.key === "ArrowLeft") {
