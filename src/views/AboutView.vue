@@ -12,6 +12,24 @@ library.add(faInfoCircle as any, faPhone as any, faEnvelope as any, faMapMarkerA
 
 import "@/assets/GoogleMaterial.css";
 
+
+interface EducationEntry {
+  degree: string;
+  institution: string;
+  location: string;
+  duration: string;
+  details: string[];
+}
+
+interface ExperienceEntry {
+  position: string;
+  location: string;
+  duration: string;
+  achievements: string[];
+  subAchievements?: string[];
+}
+
+
 // Personal Information
 const personalInfo = reactive({
   name: "ChingSan Ning",
@@ -38,7 +56,7 @@ const personalInfo = reactive({
 });
 
 // Experiences
-const experiences = reactive([
+const experiences = reactive<ExperienceEntry[]>([
   {
     position: "Sales Representative for Large Displacement Motorcycle",
     location: "Taipei",
@@ -57,7 +75,7 @@ const experiences = reactive([
 ]);
 
 // Education
-const education = reactive([
+const education = reactive<EducationEntry[]>([
   {
     degree: "Bachelor's Degree in Medical Informatics",
     institution: "FuJen Catholic University",
@@ -136,7 +154,10 @@ const education = reactive([
             <section>
               <h2><font-awesome-icon :icon="['fas', 'briefcase']" /> Experience</h2>
               <div v-for="(exp, index) in experiences" :key="index" class="experience-entry">
-                <h3><font-awesome-icon :icon="exp.position.includes('Motorcycle') ? ['fas', 'motorcycle'] : ['fas', 'timeline']" /> {{ exp.position }}</h3>
+                <h3>
+                  <font-awesome-icon :icon="exp.position.includes('Motorcycle') ? ['fas', 'motorcycle'] : ['fas', 'timeline']" />
+                  {{ exp.position }}
+                </h3>
                 <p><strong>{{ exp.location }}</strong>, {{ exp.duration }}</p>
                 <ul>
                   <li v-for="(achievement, idx) in exp.achievements" :key="idx">
@@ -156,7 +177,7 @@ const education = reactive([
             <section>
               <h2><font-awesome-icon :icon="['fas', 'graduation-cap']" /> Education</h2>
               <div v-for="(edu, index) in education" :key="index" class="education-entry">
-                <h3>{{ edu.degree }}</h3>
+                <h3>{{ edu.degree }}</h3> <!-- Fixed here -->
                 <p><strong>{{ edu.institution }}</strong>, {{ edu.location }}, {{ edu.duration }}</p>
                 <ul>
                   <li v-for="(detail, idx) in edu.details" :key="idx">{{ detail }}</li>
