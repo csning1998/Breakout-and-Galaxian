@@ -2,7 +2,7 @@
  * Manages the paddle's properties and functions, including movement and rendering.
  */
 
-import { GameSettings } from '@/game/shared/settings.js'
+import { GameSettings } from '@/tsscripts/game/shared/settings'
 
 export class Paddle {
   public height: number

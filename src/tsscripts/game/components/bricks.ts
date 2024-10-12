@@ -1,4 +1,4 @@
-import { GameSettings } from '@/game/shared/settings.js'
+import { GameSettings } from '@/tsscripts/game/shared/settings'
 
 interface Brick {
   x: number

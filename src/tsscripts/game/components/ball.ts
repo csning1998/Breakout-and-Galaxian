@@ -2,7 +2,7 @@
  * Contains the ball's properties and functions related to its movement and rendering.
  */
 
-import { GameSettings } from '@/game/shared/settings.js'
+import { GameSettings } from '@/tsscripts/game/shared/settings'
 
 export class Ball {
   public x!: number
