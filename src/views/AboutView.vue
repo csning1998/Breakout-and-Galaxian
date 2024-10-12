@@ -192,7 +192,7 @@ const education = reactive<EducationEntry[]>([
       <iframe class="map"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1807.4990578560348!2d121.4301048092969!3d25.034138013214616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a7e8507ba8dd%3A0xdf4b8bcb6330096f!2sCollege%20of%20Science%20%26%20Engineering!5e0!3m2!1sen!2stw!4v1728747622231!5m2!1sen!2stw"
           height="750" width="1050"
-          style="filter: invert(90%)"
+          style="filter: invert(90%); max-width: 100%;"
           allowfullscreen="true"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade">

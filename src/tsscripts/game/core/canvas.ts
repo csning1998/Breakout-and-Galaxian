@@ -8,8 +8,8 @@ export function initializeCanvas(canvas: HTMLCanvasElement): { ctx: CanvasRender
     throw new Error('Canvas not found / must be defined.')
   }
 
-  canvas.width = canvas.clientWidth
-  canvas.height = canvas.clientHeight
+  // canvas.width = canvas.clientWidth
+  // canvas.height = canvas.clientHeight
   canvas.style.border = '2px solid #BB86FC'
   canvas.style.backgroundColor = '#1E1E1E'
 

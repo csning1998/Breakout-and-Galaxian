@@ -28,14 +28,24 @@ onMounted(() => {
     console.error('Canvas element not found.');
     return;
   }
+
+
+  // if (window.innerHeight <= 800) {
+  //   gameCanvas.value.width = window.innerWidth
+  // }
+
+
   console.log('Canvas element found:', gameCanvas.value);
 
   // Initialize canvas and context
   const {ctx} = initializeCanvas(gameCanvas.value);
+  // ctx.canvas.width = 800
+  // ctx.canvas.height = 600
+
   console.log('Canvas context initialized:', ctx);
 
   // Initialize game settings
-  const settings = new GameSettings(props.difficulty);
+  const settings = new GameSettings(props.difficulty, gameCanvas.value);
 
   // Initialize game components
   const ball = new Ball(gameCanvas.value, settings);
@@ -96,7 +106,7 @@ function togglePauseGame() {
     } else {
       gameLogic.pause();
     }
-    isGamePaused.value = !isGamePaused.value; // 切换暂停状态
+    isGamePaused.value = !isGamePaused.value;
   }
 }
 
@@ -120,7 +130,9 @@ function return2Home() {
       <p>Score: {{ game.player.score }}</p>
       <p>Lives: {{ game.player.lives }}</p>
     </div>
-    <canvas ref="gameCanvas" width="800" height="600"></canvas>
+    <div id="canvas-container">
+      <canvas ref="gameCanvas" width="800" height="600"></canvas>
+    </div>
     <div class="controls">
       <button @click="togglePauseGame" class="functionality-button">{{ isGamePaused ? 'Resume' : 'Pause' }}</button>
       <button @click="restartGame" class="functionality-button">Restart</button>
@@ -195,4 +207,16 @@ canvas {
 .back-to-home-button:hover {
   background-color: var(--color-accent);
 }
+
+
+#canvas-container {
+  max-width: 90vw;
+}
+
+canvas {
+  /* width: 800px; */
+  width: 100%;
+  height: 600px;
+}
+
 </style>
