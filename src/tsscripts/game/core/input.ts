@@ -10,25 +10,27 @@ export class InputHandler {
   private leftPressed: boolean = false;
   private gameLogic: GameLogic;
 
+  private keyDownHandlerRef: (e: KeyboardEvent) => void;
+  private keyUpHandlerRef: (e: KeyboardEvent) => void;
+  private mouseMoveHandlerRef: (e: MouseEvent) => void;
+
   constructor(
-    paddle: Paddle,
-    canvas: HTMLCanvasElement,
-    gameLogic: GameLogic,
+      paddle: Paddle,
+      canvas: HTMLCanvasElement,
+      gameLogic: GameLogic,
   ) {
     this.gameLogic = gameLogic;
 
-    document.addEventListener("keydown", (e) => this.keyDownHandler(e), false);
-    document.addEventListener("keyup", (e) => this.keyUpHandler(e), false);
-    document.addEventListener(
-      "mousemove",
-      (e) => this.mouseMoveHandler(e, paddle, canvas),
-      false,
-    );
+    this.keyDownHandlerRef = this.keyDownHandler.bind(this);
+    this.keyUpHandlerRef = this.keyUpHandler.bind(this);
+    this.mouseMoveHandlerRef = (e: MouseEvent) => this.mouseMoveHandler(e, paddle, canvas);
+
+    document.addEventListener("keydown", this.keyDownHandlerRef, false);
+    document.addEventListener("keyup", this.keyUpHandlerRef, false);
+    document.addEventListener("mousemove", this.mouseMoveHandlerRef, false);
   }
 
   private keyDownHandler(e: KeyboardEvent): void {
-
-    console.log("keyDown", e.key)
     if (e.key === "Right" || e.key === "ArrowRight") {
       this.rightPressed = true;
     } else if (e.key === "Left" || e.key === "ArrowLeft") {
@@ -47,9 +49,9 @@ export class InputHandler {
   }
 
   private mouseMoveHandler(
-    e: MouseEvent,
-    paddle: Paddle,
-    canvas: HTMLCanvasElement,
+      e: MouseEvent,
+      paddle: Paddle,
+      canvas: HTMLCanvasElement,
   ): void {
     const relativeX = e.clientX - canvas.offsetLeft;
     if (relativeX > 0 && relativeX < canvas.width) {
@@ -58,8 +60,9 @@ export class InputHandler {
   }
 
   public destroy(): void {
-    document.removeEventListener("keydown", this.keyDownHandler);
-    document.removeEventListener("keyup", this.keyUpHandler);
+    document.removeEventListener("keydown", this.keyDownHandlerRef);
+    document.removeEventListener("keyup", this.keyUpHandlerRef);
+    document.removeEventListener("mousemove", this.mouseMoveHandlerRef);
   }
 
   public update(paddle: Paddle, canvas: HTMLCanvasElement): void {
