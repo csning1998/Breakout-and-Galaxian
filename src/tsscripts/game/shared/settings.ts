@@ -59,9 +59,15 @@ export class GameSettings {
     //   this.paddleWidth = canvas.width * .25
     // }
     // this.paddleWidth = obj.paddleWidth
-    // this.paddleWidth = canvas.width * .25
 
-    
+    /*
+    * For production build, then paddle width is set according to the canvas's width.
+    * This line can be commanded for the convenience while developing.
+    * */
+
+    this.paddleWidth = canvas.width * .25
+
+
     // this.paddleWidth = 100
   }
 }
