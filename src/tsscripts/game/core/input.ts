@@ -2,8 +2,8 @@
  * Handles user input, such as keyboard and mouse events.
  */
 
-import { Paddle } from '@/tsscripts/game/components/paddle'
-import { GameLogic } from "@/tsscripts/game/core/game-logic";
+import {Paddle} from '@/tsscripts/game/components/paddle'
+import {GameLogic} from "@/tsscripts/game/core/game-logic";
 
 export class InputHandler {
   private rightPressed: boolean = false;
@@ -13,6 +13,7 @@ export class InputHandler {
   private keyDownHandlerRef: (e: KeyboardEvent) => void;
   private keyUpHandlerRef: (e: KeyboardEvent) => void;
   private mouseMoveHandlerRef: (e: MouseEvent) => void;
+  private touchMoveHandlerRef: (e: TouchEvent) => void;
 
   constructor(
       paddle: Paddle,
@@ -24,10 +25,12 @@ export class InputHandler {
     this.keyDownHandlerRef = this.keyDownHandler.bind(this);
     this.keyUpHandlerRef = this.keyUpHandler.bind(this);
     this.mouseMoveHandlerRef = (e: MouseEvent) => this.mouseMoveHandler(e, paddle, canvas);
+    this.touchMoveHandlerRef = (e: TouchEvent) => this.touchMoveHandler(e, paddle, canvas);
 
     document.addEventListener("keydown", this.keyDownHandlerRef, false);
     document.addEventListener("keyup", this.keyUpHandlerRef, false);
     document.addEventListener("mousemove", this.mouseMoveHandlerRef, false);
+    document.addEventListener("touchmove", this.touchMoveHandlerRef,{ passive: false });
   }
 
   private keyDownHandler(e: KeyboardEvent): void {
@@ -59,10 +62,31 @@ export class InputHandler {
     }
   }
 
+  private touchMoveHandler(
+      e: TouchEvent,
+      paddle: Paddle,
+      canvas: HTMLCanvasElement,
+  ): void {
+    // e.preventDefault();
+
+    const touch = e.touches[0];
+    const boundingRect = canvas.getBoundingClientRect();
+    const paddleCenterX =
+      (touch.clientX - boundingRect.left) * (canvas.width / boundingRect.width);
+
+    if (
+      paddleCenterX > paddle.width / 2 &&
+      paddleCenterX < canvas.width - paddle.width / 2
+    ) {
+      paddle.x = paddleCenterX - paddle.width / 2;
+    }
+  }
+
   public destroy(): void {
     document.removeEventListener("keydown", this.keyDownHandlerRef);
     document.removeEventListener("keyup", this.keyUpHandlerRef);
     document.removeEventListener("mousemove", this.mouseMoveHandlerRef);
+    document.removeEventListener("touchmove", this.touchMoveHandlerRef);
   }
 
   public update(paddle: Paddle, canvas: HTMLCanvasElement): void {
