@@ -9,7 +9,7 @@ import WebIntro from './components/WebIntro.vue'
       <img alt="Vue logo" class="logo" src="@/assets/logo.svg" />
       <WebIntro msg="Welcome to my Curriculum Vitae" class="web-intro" />
     </div>
-    <nav>
+    <nav class="nav-links">
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
       <RouterLink to="/accomplishment">Accomplishment</RouterLink>
@@ -20,12 +20,19 @@ import WebIntro from './components/WebIntro.vue'
 
 
 <style scoped>
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 header {
   background-color: var(--color-surface);
   color: var(--color-text);
-  padding: 1.5rem;
+  width: 90%;
+  padding: 1.2rem;
   display: flex;
   flex-direction: column;
+  text-align: center;
   align-items: center;
 }
 
@@ -34,18 +41,41 @@ header {
   flex-direction: column; /* Keep column direction on all screen sizes */
   align-items: center;
   text-align: center; /* Center text inside WebIntro */
-  max-width: 100%;
+  width: 95%;
 }
 
 .logo {
   width: 80px;
   height: 80px;
   margin-bottom: 1rem;
-  flex-shrink: 0; /* Prevent the logo from shrinking */
+  flex-shrink: 0;
 }
 
 nav {
   margin-top: 1rem;
+}
+
+.nav-links {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100vw;
+  justify-content: center; /* Make links center aligned */
+  gap: 0.5rem; /* Add space between the links */
+  box-sizing: border-box;
+}
+
+.nav-links a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--color-secondary);
 }
 
 nav a {

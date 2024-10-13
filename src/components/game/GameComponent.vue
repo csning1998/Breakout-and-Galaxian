@@ -143,6 +143,7 @@ function return2Home() {
 
 <style scoped>
 .game-container {
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -191,23 +192,6 @@ canvas {
 .controls button:hover {
   background-color: var(--color-accent);
 }
-
-
-.back-to-home-button {
-  margin-top: 20px;
-  padding: 15px 30px;
-  font-size: 18px;
-  background-color: var(--color-primary);
-  color: var(--color-text);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.back-to-home-button:hover {
-  background-color: var(--color-accent);
-}
-
 
 #canvas-container {
   max-width: 90vw;

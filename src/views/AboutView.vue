@@ -217,6 +217,7 @@ const education = reactive<EducationEntry[]>([
   margin: 1cm auto;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
   background-color: var(--color-bg-light);
 }
 
@@ -236,6 +237,17 @@ const education = reactive<EducationEntry[]>([
   font-weight: 600;
   letter-spacing: 0.05rem;
 }
+
+.left-column {
+  flex: 1 1 30%;
+  max-width: 320px;
+  margin-right: 20px;
+}
+
+.right-column {
+  flex: 2 1 70%;
+}
+
 
 .left-column p,
 .right-column p {
@@ -315,10 +327,16 @@ const education = reactive<EducationEntry[]>([
   flex: 1;
 }
 
+#resume {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .d-flex {
     flex-direction: column;
+    gap: 1rem;
   }
 
   .left-column,

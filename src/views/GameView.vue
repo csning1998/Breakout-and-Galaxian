@@ -24,6 +24,7 @@ console.log('GameView loaded with difficulty:', difficulty.value)
   align-items: center;
   text-align: center;
   margin: 2rem auto;
+  //box-sizing: border-box;
 }
 
 h2 {

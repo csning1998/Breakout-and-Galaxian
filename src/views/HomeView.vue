@@ -39,6 +39,7 @@ onMounted(() => {
 
 <style scoped>
 .home-container {
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
