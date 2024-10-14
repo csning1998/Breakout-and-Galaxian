@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, onMounted, onUnmounted, type PropType} from 'vue';
+import {ref, onMounted, onUnmounted} from 'vue';
 import { initializeCanvas } from '@/tsscripts/game/core/canvas';
 import { GameSettings } from '@/tsscripts/game/shared/settings';
 import { Ball } from '@/tsscripts/game/components/ball';
@@ -29,19 +29,10 @@ onMounted(() => {
     return;
   }
 
-
-  // if (window.innerHeight <= 800) {
-  //   gameCanvas.value.width = window.innerWidth
-  // }
-
-
   console.log('Canvas element found:', gameCanvas.value);
 
   // Initialize canvas and context
   const {ctx} = initializeCanvas(gameCanvas.value);
-  // ctx.canvas.width = 800
-  // ctx.canvas.height = 600
-
   console.log('Canvas context initialized:', ctx);
 
   // Initialize game settings
@@ -57,15 +48,6 @@ onMounted(() => {
   const bricks = new Bricks(settings);
   console.log('Initialized Bricks:', bricks);
 
-  // Initialize input handler
-  // const inputHandler = new InputHandler(paddle, gameCanvas.value, () => {
-  //   gameLogic.togglePause();
-  // });
-
-
-  // console.log('Initialized InputHandler:', inputHandler);
-
-  // Create scene object with inputHandler included
   let scene = {
     game,
     ctx,
@@ -74,7 +56,6 @@ onMounted(() => {
     ball,
     paddle,
     bricks,
-    // inputHandler, // Include inputHandler here
   };
 
   // Start the game loop
@@ -90,9 +71,6 @@ onMounted(() => {
 
   onUnmounted(() => {
     game.pause();
-    // if (inputHandler) {
-    //   inputHandler.destroy();
-    // }
     if (gameLogic) {
       gameLogic.pause();
     }

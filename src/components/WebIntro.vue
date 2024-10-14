@@ -10,9 +10,6 @@ defineProps<{
     <p>
       This project, which includes a personal introduction and game elements, was developed as part of the Web Fundamentals course.
     </p>
-    <p>
-      This project will be continuing updated during my free time, adding more elements based on the skills I acquire.
-    </p>
   </div>
 </template>
 
@@ -28,16 +25,15 @@ h1 {
   width: 100%;
 }
 
-
 h3 {
   font-size: 1.2rem;
 }
 
 p {
-  white-space: pre-wrap; /* Allow the text to wrap */
-  word-wrap: break-word; /* Break long words */
-  overflow: auto; /* Add scroll if content overflows */
-  max-width: 100%; /* Ensure it doesn't exceed parent width */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: auto;
+  max-width: 100%;
 }
 
 .greetings h1,

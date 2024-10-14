@@ -11,8 +11,8 @@ import WebIntro from './components/WebIntro.vue'
     </div>
     <nav class="nav-links">
       <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/game">Game</RouterLink>
       <RouterLink to="/about">About</RouterLink>
-      <RouterLink to="/accomplishment">Accomplishment</RouterLink>
     </nav>
   </header>
   <RouterView />

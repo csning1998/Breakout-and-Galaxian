@@ -1,54 +1,44 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { onMounted, ref } from 'vue'
-import DifficultySelector from '@/components/game/DifficultySelector.vue'
 
 const router = useRouter()
-const showDifficultySelector = ref(false)
-function showSelector() {
-  showDifficultySelector.value = true
+const goToAbout = () => {
+  router.push('/about')
 }
-
-function navigate2Game(difficulty: string) {
-  console.log('Navigating to GameView with difficulty:', difficulty)
-  router
-    .push({
-      name: 'Game',
-      query: { difficulty }
-    })
-    .catch((err) => {
-      console.error('Navigation error:', err)
-    })
-}
-
-onMounted(() => {
-  showDifficultySelector.value = false
-})
 </script>
 
 <template>
-  <div class="home-container">
-    <h2>  It's you time to make a challenge for yourself.</h2>
-    <p>Ready to test your skills? Choose your difficulty and start playing!</p>
-    <button v-if="!showDifficultySelector" @click="showSelector" class="start-game-button">
-      Start Game
-    </button>
-    <DifficultySelector v-if="showDifficultySelector" @difficultySelected="navigate2Game" />
-  </div>
+  <section class="home-container">
+    <h2>Hello World!</h2>
+    <div class="hello-world-info">
+      <p>Welcome to my Web project using Vue + Vite.</p>
+      <p>This is a simple Hello World page with Google Material Dark 2 styling.</p>
+    </div>
+    <button @click="goToAbout">Learn More About Us</button>
+  </section>
 </template>
 
 <style scoped>
 .home-container {
   width: 90%;
+  max-width: 1200px;
+  padding: 1cm;
+  margin: 1cm auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   background-color: var(--color-bg-light);
-  padding: 2rem;
-  border-radius: 8px;
-  margin: 2rem auto;
-  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.hello-world-info {
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 h2 {
@@ -61,17 +51,17 @@ p {
   margin-bottom: 2rem;
 }
 
-.start-game-button {
-  padding: 15px 30px;
-  font-size: 18px;
-  background-color: var(--color-primary);
-  color: var(--color-bg-light);
+button {
+  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
+  background-color: var(--color-primary);
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
 }
 
-.start-game-button:hover {
-  background-color: var(--color-accent);
+button:hover {
+  background-color: #36a574;
 }
 </style>
